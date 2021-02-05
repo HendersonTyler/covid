@@ -17,7 +17,7 @@ function App() {
         <Container>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/country/:country" component={Country} />
+            <Route path="/country/:country" component={Country} />
           </Switch>
         </Container>
       </Router>

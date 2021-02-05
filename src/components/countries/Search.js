@@ -1,45 +1,46 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
+
 import CountryContext from "../../context/countries/countryContext";
 
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import FormControl from "react-bootstrap/FormControl";
-import Form from "react-bootstrap/Form";
+
+import Dropdown from "react-bootstrap/Dropdown";
+
+import Spinner from "../layout/Spinner";
 
 const Search = () => {
   const countryContext = useContext(CountryContext);
-  const [text, setText] = useState("");
 
-  const onSubmit = (e) => {
-    if (text === "") {
-      e.preventDefault();
-      console.log("Empty String");
-    } else {
-      countryContext.setCountry(text);
-    }
-  };
+  const { globalData } = countryContext;
 
-  const onChange = (e) => setText(e.target.value);
+  if (!globalData.Countries) {
+    return <Spinner />;
+  } else {
+    return (
+      <div className="m-5" style={{ textAlign: "center" }}>
+        <h4>Country details:</h4>
 
-  return (
-    <div className="m-5" style={{ textAlign: "center" }}>
-      <h4>Search a Country</h4>
-      <Form className="form">
-        <FormControl
-          onChange={onChange}
-          value={text}
-          type="text"
-          placeholder="Australia"
-          className="mr-sm-2"
-        />
-        <Link onClick={onSubmit} to={`/country/${text}`}>
-          <Button className="m-2" type="submit" variant="primary">
-            Search
-          </Button>
-        </Link>
-      </Form>
-    </div>
-  );
+        <Dropdown>
+          <Dropdown.Toggle variant="primary" id="dropdown-basic">
+            Select a Country:
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            {globalData.Countries.map((x) => (
+              <Link key={x.Country} to={`/country/${x.Country}`}>
+                <Dropdown.Item
+                  // onClick={() => setCountry(x.Country)}
+                  href={x.Country}
+                >
+                  {x.Country}
+                </Dropdown.Item>
+              </Link>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+    );
+  }
 };
 
 export default Search;
