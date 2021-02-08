@@ -15,7 +15,6 @@ const CountryState = (props) => {
 
   // Get Specific Country Details
   const setCountry = (text) => {
-    console.log("setting country...");
     dispatch({
       type: SET_COUNTRY,
       payload: text,
@@ -25,9 +24,8 @@ const CountryState = (props) => {
   // Get Global Stats
   const getGlobalData = async () => {
     setLoading();
-    console.log("getting global data...");
-    // const res = await axios.get("https://api.covid19api.com/summary");
-    const res = await axios.get("http://localhost:3000/db.json");
+    // const res = await axios.get("http://localhost:3000/db.json");
+    const res = await axios.get("https://api.covid19api.com/summary");
 
     dispatch({
       type: GET_GLOBAL_DATA,
