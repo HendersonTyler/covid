@@ -27,7 +27,7 @@ const CountryState = (props) => {
     // const res = await axios.get("http://localhost:3000/db.json");
     const res = await axios
       .get("https://api.covid19api.com/summary")
-      .catch(() => axios.get("http://localhost:3000/db.json"));
+      .catch(() => axios.get("https://covid19-updater.herokuapp.com/db.json"));
 
     dispatch({
       type: GET_GLOBAL_DATA,
