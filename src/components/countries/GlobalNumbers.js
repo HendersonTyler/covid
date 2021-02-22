@@ -17,11 +17,11 @@ const GlobalNumbers = () => {
   } else {
     return (
       <>
-        <h1 className="display-1">
+        <h1 className="display-1 text-center">
           {globalData.Global.NewConfirmed.toLocaleString()} cases of Covid have
           been recorded today.
         </h1>
-        <h2>
+        <h2 class="text-center">
           So far {globalData.Global.TotalRecovered.toLocaleString()} have
           <strong> recovered</strong>, and{" "}
           {globalData.Global.TotalDeaths.toLocaleString()} have
