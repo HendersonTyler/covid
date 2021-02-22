@@ -25,7 +25,9 @@ const CountryState = (props) => {
   const getGlobalData = async () => {
     setLoading();
     // const res = await axios.get("http://localhost:3000/db.json");
-    const res = await axios.get("https://api.covid19api.com/summary");
+    const res = await axios
+      .get("https://api.covid19api.com/summary")
+      .catch(() => axios.get("http://localhost:3000/db.json"));
 
     dispatch({
       type: GET_GLOBAL_DATA,
